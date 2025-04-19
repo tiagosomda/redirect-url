@@ -76,26 +76,33 @@
             }
         }
     </style>
-    <script src="mappings.js"></script>
+    <script src="forwarding.js"></script>
     <script src="links.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash.substring(1); // Get the hash value without the '#' symbol
+            const checkAndRedirect = () => {
+                const hash = window.location.hash.substring(1); // Get the hash value without the '#' symbol
 
-            if (hash && urlMappings[hash]) {
-                window.location.href = urlMappings[hash];
-            } else {
-                const linksContainer = document.querySelector('.links');
+                if (hash && urlMappings[hash]) {
+                    window.location.href = urlMappings[hash];
+                } else if (!urlMappings[hash] && !window.googleSheetsFetchComplete) {
+                    // If the mapping doesn't exist and Google Sheets fetch is not complete, retry after a delay
+                    setTimeout(checkAndRedirect, 500); // Retry after 500ms
+                } else {
+                    const linksContainer = document.querySelector('.links');
 
-                // Dynamically create links
-                links.forEach(entry => {
-                    const link = document.createElement('a');
-                    link.href = entry.url;
-                    link.textContent = entry.name;
-                    link.className = 'link';
-                    linksContainer.appendChild(link);
-                });
-            }
+                    // Dynamically create links
+                    links.forEach(entry => {
+                        const link = document.createElement('a');
+                        link.href = entry.url;
+                        link.textContent = entry.name;
+                        link.className = 'link';
+                        linksContainer.appendChild(link);
+                    });
+                }
+            };
+
+            checkAndRedirect();
         });
     </script>
 </head>
