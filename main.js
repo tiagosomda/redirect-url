@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 messageContainer.textContent = 'redirecting...';
                 window.location.href = urlMappings[hash];
             } else if (!window.googleSheetsFetchComplete) {
-                messageContainer.textContent = '# forwarding rules...';
+                messageContainer.textContent = 'processing forwarding rules...';
                 // If the hash is invalid or Google Sheets fetch is not complete, retry after a delay
                 setTimeout(checkAndRedirect, 500); // Retry after 500ms
             } else {
-                messageContainer.textContent = 'no forwarding rule found.';
+                messageContainer.textContent = 'no forwarding rule found';
             }
         } else {
             // Display links from `links.js`
