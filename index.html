@@ -3,20 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Redirector</title>
-    <script src="mappings.js"></script>
-    <script>
-        // Get URL parameters
-        const params = new URLSearchParams(window.location.search);
-        const key = params.get('key');
-
-        // Perform redirection based on the 'key' parameter
-        if (key && urlMappings[key]) {
-            window.location.href = urlMappings[key];
+    <title>Sommer Damasceno Network</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
         }
+
+        header {
+            background-color: #333;
+            color: white;
+            width: 100%;
+            text-align: center;
+            padding: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .link {
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+
+        .link:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                font-size: 1.2rem;
+            }
+
+            .link {
+                font-size: 1rem;
+            }
+        }
+    </style>
+    <script src="mappings.js"></script>
+    <script src="somda-network.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const key = params.get('key');
+
+            if (key && urlMappings[key]) {
+                window.location.href = urlMappings[key];
+            } else {
+                const linksContainer = document.querySelector('.links');
+
+                // Dynamically create Sommer Damasceno Network links
+                somdaNetwork.forEach(entry => {
+                    const link = document.createElement('a');
+                    link.href = entry.url;
+                    link.textContent = entry.name;
+                    link.className = 'link';
+                    linksContainer.appendChild(link);
+                });
+            }
+        });
     </script>
 </head>
 <body>
-    <h1>URL Redirector</h1>
+    <header>Sommer Damasceno Network</header>
+    <div class="links">
+        <!-- Links will be dynamically added here -->
+    </div>
 </body>
 </html>
