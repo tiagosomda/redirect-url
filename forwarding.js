@@ -18,11 +18,11 @@ let urlMappings = {
 			const rows = jsonData.table.rows;
 
 			const newMappings = {};
-			rows.forEach(row => {
+			rows.slice(1).forEach(row => { // Skip the first item (header)
 				const key = row.c[0]?.v;
 				const value = row.c[1]?.v;
 				if (key && value) {
-					newMappings[key] = value;
+					newMappings[key] = value; // Replace existing mapping if it exists
 				}
 			});
 
