@@ -95,12 +95,12 @@
                 const linksContainer = document.querySelector('.links');
 
                 if (isHashPresent) {
-                    if (hash === 'ALL') {
+                    if (hash.toLowerCase() === 'all') {
                         // Display all URL mappings including Google Sheets data
                         linksContainer.innerHTML = ''; // Clear existing links
                         const allMappings = { ...urlMappings };
 
-                        Object.entries(allMappings).sort(([keyA], [keyB]) => keyA.localeCompare(keyB)).forEach(([key, value]) => {
+                        Object.entries(allMappings).sort(([keyA], [keyB]) => keyA.toLowerCase().localeCompare(keyB.toLowerCase())).forEach(([key, value]) => {
                             const link = document.createElement('a');
                             link.href = value;
                             link.innerHTML = `${key}<br>${value}`; // Display key and URL on separate lines using <br>
