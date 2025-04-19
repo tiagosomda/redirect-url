@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sommer Damasceno Network</title>
+    <title>somda.net</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,18 +12,31 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Ensure header stays at the top */
             min-height: 100vh;
-            background-color: #f4f4f4;
+            background: linear-gradient(270deg, #722b48, #652f7e, #145877);
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite; /* Slow gradient animation */
+            position: relative; /* Ensure gradient covers the entire page */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         header {
-            background-color: #333;
-            color: white;
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+            backdrop-filter: blur(10px); /* Blur effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for 3D effect */
+            color: white; /* Changed font color to white */
             width: 100%;
             text-align: center;
             padding: 1rem 0;
             font-size: 1.5rem;
+            position: relative; /* Ensure header is above the gradient */
+            z-index: 1; /* Keep header above other content */
         }
 
         .links {
@@ -87,7 +100,7 @@
     </script>
 </head>
 <body>
-    <header>Sommer Damasceno Network</header>
+    <header><b>SOM</b>MER <b>DA</b>MASCENO <b>NET</b>WORK</header>
     <div class="links">
         <!-- Links will be dynamically added here -->
     </div>
