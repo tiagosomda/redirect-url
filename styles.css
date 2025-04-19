@@ -1,3 +1,7 @@
+html {
+    background-color: black;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -20,16 +24,18 @@ body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent white */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.2); /* Optional: Adjust background color */
+    z-index: 1000; /* Ensures it stays above other elements */
     backdrop-filter: blur(10px); /* Blur effect */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* Subtle shadow for 3D effect */
     color: white; /* Changed font color to white */
-    width: 100%;
     text-align: center;
     padding: 1rem 0;
     font-size: 1.5rem;
-    position: relative; /* Ensure header is above the gradient */
-    z-index: 1; /* Keep header above other content */
 }
 
 .links {
