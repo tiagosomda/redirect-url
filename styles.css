@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Ensure header stays at the top */
+    min-height: 100vh;
+    background: linear-gradient(270deg, #722b48, #652f7e, #145877);
+    background-size: 400% 400%;
+    animation: gradientAnimation 20s ease infinite; /* Slow gradient animation */
+    position: relative; /* Ensure gradient covers the entire page */
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blur effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* Subtle shadow for 3D effect */
+    color: white; /* Changed font color to white */
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    position: relative; /* Ensure header is above the gradient */
+    z-index: 1; /* Keep header above other content */
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 250px; /* Ensure buttons do not exceed this width */
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Blur effect for glassy look */
+    padding: 1rem;
+    margin: 0.5rem 0;
+    width: 80%; /* Default width for smaller screens */
+    max-width: 400px; /* Ensure buttons do not exceed this width */
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, width 0.3s, box-shadow 0.3s;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.link:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* Slightly brighter on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+@media (min-width: 600px) {
+    .link {
+        width: 100%; /* For larger screens, buttons take full width of container */
+    }
+}
+
+.message {
+    margin-top: 1rem;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+}
