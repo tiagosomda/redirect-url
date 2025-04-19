@@ -80,11 +80,10 @@
     <script src="links.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
-            const key = params.get('key');
+            const hash = window.location.hash.substring(1); // Get the hash value without the '#' symbol
 
-            if (key && urlMappings[key]) {
-                window.location.href = urlMappings[key];
+            if (hash && urlMappings[hash]) {
+                window.location.href = urlMappings[hash];
             } else {
                 const linksContainer = document.querySelector('.links');
 
