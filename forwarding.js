@@ -28,6 +28,14 @@ let urlMappings = {
 
 			urlMappings = { ...urlMappings, ...newMappings };
 			console.log("Updated URL mappings:", urlMappings);
+
+			// Indicate that Google Sheets fetch is complete
+			window.googleSheetsFetchComplete = true;
 		})
-		.catch(err => console.error("Error fetching sheet data:", err));
+		.catch(err => {
+			console.error("Error fetching sheet data:", err);
+
+			// Ensure the flag is set even if the fetch fails
+			window.googleSheetsFetchComplete = true;
+		});
 })();

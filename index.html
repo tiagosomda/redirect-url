@@ -75,23 +75,42 @@
                 width: 100%; /* For larger screens, buttons take full width of container */
             }
         }
+
+        .message {
+            margin-top: 1rem;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
     </style>
     <script src="forwarding.js"></script>
     <script src="links.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const checkAndRedirect = () => {
+                console.log('Checking for hash...'); // Debugging log
                 const hash = window.location.hash.substring(1); // Get the hash value without the '#' symbol
+                const isHashPresent = hash && hash.trim() !== '' // Extracted check into a variable
 
-                if (hash && urlMappings[hash]) {
-                    window.location.href = urlMappings[hash];
-                } else if (!urlMappings[hash] && !window.googleSheetsFetchComplete) {
-                    // If the mapping doesn't exist and Google Sheets fetch is not complete, retry after a delay
-                    setTimeout(checkAndRedirect, 500); // Retry after 500ms
+                const messageContainer = document.querySelector('.message');
+                const linksContainer = document.querySelector('.links');
+
+                if (isHashPresent)
+                {
+                    // hide linksContainer
+                    if (urlMappings[hash]) {
+                        messageContainer.textContent = 'redirecting...';
+                        window.location.href = urlMappings[hash];
+                    } else if (!window.googleSheetsFetchComplete) {
+                        messageContainer.textContent = '# forwarding rules...';
+                        // If the hash is invalid or Google Sheets fetch is not complete, retry after a delay
+                        setTimeout(checkAndRedirect, 500); // Retry after 500ms
+                    } else {
+                        messageContainer.textContent = 'no forwarding rule found.';
+                    }
                 } else {
-                    const linksContainer = document.querySelector('.links');
-
-                    // Dynamically create links
+                    // hide messageContainer
+                    linksContainer.innerHTML = ''; // Clear existing links
                     links.forEach(entry => {
                         const link = document.createElement('a');
                         link.href = entry.url;
@@ -102,14 +121,17 @@
                 }
             };
 
+            // Initial check and redirect
             checkAndRedirect();
+
+            // Listen for hash changes and re-check
+            window.addEventListener('hashchange', checkAndRedirect);
         });
     </script>
 </head>
 <body>
     <header>SOMDA.NET</header>
-    <div class="links">
-        <!-- Links will be dynamically added here -->
-    </div>
+    <div class="message"></div>
+    <div class="links"></div>
 </body>
 </html>
