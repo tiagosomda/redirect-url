@@ -5,8 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const messageContainer = document.querySelector('.message');
         const linksContainer = document.querySelector('.links');
+        linksContainer.innerHTML = '';
+        messageContainer.textContent = '';
 
         if (isHashPresent) {
+            console.log('Hash present:', hash);
             if (hash === 'all') {
                 // Display all URL mappings including Google Sheets data
                 linksContainer.innerHTML = ''; // Clear existing links
@@ -36,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 messageContainer.textContent = 'no forwarding rule found';
             }
         } else {
+            console.log('No hash present in the URL. Displaying links.');
             // Display links from `links.js`
             linksContainer.innerHTML = ''; // Clear existing links
             links.forEach(entry => {
