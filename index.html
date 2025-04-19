@@ -77,7 +77,7 @@
         }
     </style>
     <script src="mappings.js"></script>
-    <script src="somda-network.js"></script>
+    <script src="links.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const params = new URLSearchParams(window.location.search);
@@ -88,8 +88,8 @@
             } else {
                 const linksContainer = document.querySelector('.links');
 
-                // Dynamically create Sommer Damasceno Network links
-                somdaNetwork.forEach(entry => {
+                // Dynamically create links
+                links.forEach(entry => {
                     const link = document.createElement('a');
                     link.href = entry.url;
                     link.textContent = entry.name;
