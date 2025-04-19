@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Redirector</title>
+    <script src="mappings.js"></script>
+    <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const key = params.get('key');
+
+        // Perform redirection based on the 'key' parameter
+        if (key && urlMappings[key]) {
+            window.location.href = urlMappings[key];
+        }
+    </script>
+</head>
+<body>
+    <h1>URL Redirector</h1>
+    <p>If you are not redirected automatically, please check the URL parameters or contact the administrator.</p>
+</body>
+</html>
